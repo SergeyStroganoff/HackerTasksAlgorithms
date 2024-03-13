@@ -6,14 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LevenstainRealisationTest {
 
-    LevenstainRealisation levenstainRealisation = new LevenstainRealisation();
+   private LevenstainRealisation levenstainRealisation = new LevenstainRealisation();
 
     @Test
     void getLevenstainLength() {
-
-        String str1 = "kitten";
-        String str2 = "sitting";
+        String str1 = "nordic";
+        String str2 = "cortic";
         int result = levenstainRealisation.getLevenstainLength(str1, str2);
-        assertEquals(3, result);
+        assertEquals(2, result);
     }
 }
