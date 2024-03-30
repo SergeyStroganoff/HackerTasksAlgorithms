@@ -10,7 +10,7 @@ class RodCuttingSolvingDPRecursiveTest {
     @Test
     void maxProfit() {
         int[] prices = {0, 1, 5, 8, 9};
-        int result = rodCuttingSolvingDPRecursive.cutRodDownAproach(prices, 4);
+        int result = rodCuttingSolvingDPRecursive.cutRodDownAproach(prices, 2);
         assertEquals(10, result);
     }
 

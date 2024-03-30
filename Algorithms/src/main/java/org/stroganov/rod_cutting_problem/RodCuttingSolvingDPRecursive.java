@@ -1,27 +1,30 @@
 package org.stroganov.rod_cutting_problem;
 
+import java.util.Arrays;
+
 public class RodCuttingSolvingDPRecursive {
 
     // Метод возвращает максимальную цену для разрезания палки длиной n метров
     //низходящий рекурсивный подход
 
     public int cutRodDownAproach(int[] price, int n) {
+        // System.out.println("Заходим в рекурсивный вызов cutRodDownAproach с параметрами: price = " + price + "; n = " + n);
         if (n <= 0) {
+            System.out.println("Базовый случай - Возвращаемое значение: " + 0);
             return 0;
         }
-        int max_val = Integer.MIN_VALUE; // Максимальная цена для разрезания палки длиной n метров
-        int lastPartPrice = 0;
-
+        int maxVal = Integer.MIN_VALUE; // Максимальная цена для разрезания палки длиной n метров
+        int lastPartPrice;
         // Перебираем все варианты разрезания
         for (int i = 1; i <= n; i++) {
             // можно добавить мемоизацию - сохранять результаты и затем исскать их в кэше !!!
-            lastPartPrice = cutRodDownAproach(price, n - i);
-            max_val = Math.max(max_val, price[i] + lastPartPrice);
+            System.out.println("Вызов cutRodDownAproach с параметрами: price = " + Arrays.toString(price) + "; n = " + (n - i));
+                    lastPartPrice = cutRodDownAproach(price, n - i);
+            maxVal = Math.max(maxVal, price[i] + lastPartPrice);
         }
-        return max_val;
+        System.out.println("Выходим из рекурсивного вызова- Возвращаемое значение: " + maxVal);
+        return maxVal;
     }
-
-
     public int cutRodUpRecursiveApproach(int[] price, int n) {
         if (n == 1) {
             return price[1];
