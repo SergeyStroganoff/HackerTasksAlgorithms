@@ -21,7 +21,7 @@ public class SolutionDP {
             return 1;
         }
         int[] memory = new int[arraySequence.length];
-        int[] prev = new int[arraySequence.length]; //massive for save privios index of element in subsequence
+        int[] prev = new int[arraySequence.length]; //massive for save privies index of element in subsequence
         Arrays.fill(memory, 1);
         System.out.println(Arrays.toString(memory));
 
@@ -29,7 +29,7 @@ public class SolutionDP {
             for (int j = i + 1; j < arraySequence.length; j++) {
                 if (arraySequence[j] > arraySequence[i] && memory[j] < memory[i] + 1) {
                     memory[j] = memory[i] + 1;
-                    prev[j] = i;
+                    prev[j] = i; //fill array to get numders of greatest subsequence
                 }
                 System.out.println(Arrays.toString(memory));
             }
