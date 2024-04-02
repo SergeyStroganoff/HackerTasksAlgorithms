@@ -61,65 +61,6 @@ public class SolutionForLowSubsequence {
         return integerList;
     }
 
-    public static int findElementInMemoryArray(int[] subsequence, int startLeft, int startRight, int key) {
-        int left = startLeft;
-        int right = startRight;
-        int mid = 0;
-        int resultIndex = -1;
-        if (key < subsequence[right - 1]) {  //first case
-            subsequence[right] = key;
-            return right;
-        }
-        if (key > subsequence[right] && key < subsequence[right - 1]) {  //second case
-            subsequence[right] = key;
-            return right;
-        }
-        while (left <= right) {  //binary search case 3
-            mid = left + (right - left) / 2;
-            if (subsequence[mid] == key) {
-                return mid;
-            } else if (key < subsequence[mid]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        if (subsequence[mid] < key) { //case 4
-            subsequence[mid] = key;
-            return mid;
-        }
-        return resultIndex;
-    }
-
-    public static int floorIndex(int[] subsequence, int startLeft, int startRight, int key) {
-        int left = startLeft;
-        int right = startRight;
-        int mid;
-        int floorIndex = -1; // Initialize floorIndex to -1 (no floor found yet)
-        boolean floorIndexFound = false;
-
-        while (left <= right) { // Use a while loop instead of a for loop for binary search
-            mid = left + (right - left) / 2; // Calculate mid using left and right pointers
-            if (subsequence[mid] == key) { // If key is found, it is also the floor
-                floorIndex = mid;
-                floorIndexFound = true;
-                subsequence[mid] = key;
-                break;
-            } else if (subsequence[mid] < key) { // Move left pointer to search right half
-                floorIndex = mid; // Update floorIndex to current mid (potential floor)
-                left = mid + 1;
-            } else { // Move right pointer to search left half
-                right = mid - 1;
-            }
-        }
-        if (!floorIndexFound) { // If floorIndex is not found yet
-            floorIndex = right; // Update floorIndex to the right pointer (potential floor)
-            // subsequence[right] = key;
-        }
-
-        return floorIndex;
-    }
-
     public static int ceilIndexMy(int[] subsequence, int left, int right, int key) { //find ceil index for current element in subsequence array
         int mid = (right - left) / 2;
         int ceilIndex = 0;
@@ -152,35 +93,4 @@ public class SolutionForLowSubsequence {
         }
         return ceilIndex;
     }
-
-
-        public static int ceilIndex ( int[] subsequence, int startLeft, int startRight, int key)
-        { //find ceil index for current element in subsequence array
-            int left = startLeft;
-            int right = startRight;
-            int mid;
-            int ceilIndex = 0;
-            boolean ceilIndexFound = false;
-            for (mid = (left + right) / 2; left <= right && !ceilIndexFound; mid = (left + right) / 2) { //binary search
-                if (subsequence[mid] < key) { //if current element of subsequence array is greater than current element of array sequence
-                    right = mid - 1;
-                } else if (subsequence[mid] == key) {
-                    subsequence[mid + 1] = key;
-                    ceilIndex = mid + 1;
-                    ceilIndexFound = true;
-                } else {
-                    left = mid + 1;
-                }
-            }
-            if (!ceilIndexFound) {
-                if (mid == left) {
-                    subsequence[mid] = key;
-                    ceilIndex = mid;
-                } else {
-                    subsequence[mid + 1] = key;
-                    ceilIndex = mid + 1;
-                }
-            }
-            return ceilIndex;
-        }
 }
