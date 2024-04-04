@@ -1,4 +1,5 @@
 # Задача
+Good explanation of the problem can be found [https://e-maxx.ru/algo/longest_increasing_subseq_log]
 
 "Найти длину самой большой возрастающей подпоследовательности в массиве."
 
