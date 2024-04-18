@@ -11,7 +11,6 @@ public class PalindromeUtil {
         if (word.length() == 0 || word.length() == 1) {
             return true;
         }
-
         StringBuilder stringBuilder = new StringBuilder(word);
         String reverseWord = stringBuilder.reverse().toString();
         return word.equals(reverseWord);
@@ -66,6 +65,4 @@ public class PalindromeUtil {
         }
         return true;
     }
-
-
 }
