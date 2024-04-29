@@ -27,7 +27,7 @@ public class MeetingRoomReservationSolutionV2 {
             }
 
         }
-        list.forEach(System.out::println);
+        // list.forEach(System.out::println);
         System.out.println(list.size());
     }
     public static class TimeWindowV2 implements Comparable<TimeWindowV2> {
@@ -57,7 +57,7 @@ public class MeetingRoomReservationSolutionV2 {
 
         @Override
         public int compareTo(TimeWindowV2 o) {
-            return this.startTime - o.startTime;
+            return this.endTime - o.endTime;
         }
 
         @Override
@@ -66,5 +66,3 @@ public class MeetingRoomReservationSolutionV2 {
         }
     }
 }
-
-
