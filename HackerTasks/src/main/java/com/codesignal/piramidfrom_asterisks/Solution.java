@@ -7,7 +7,6 @@ public class Solution {
         System.out.println(printPyramid(5));
     }
 
-
     public static String printPyramid(int n) {
         StringBuilder stringBuilder = new StringBuilder();
         int asterisks = n * 2 - 1;

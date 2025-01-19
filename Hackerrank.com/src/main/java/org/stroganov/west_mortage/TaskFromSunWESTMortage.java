@@ -23,12 +23,12 @@ public class TaskFromSunWESTMortage {
         HashMap<String, List<String>> rowsValuesMap = new HashMap<>();
         List<String> columnNames = new ArrayList<>();
         columnNames.add("-");
-        String[] rowBuffer = inputString.split(";");
+        String[] rowBuffer = inputString.split(";"); //делим на строки - колонки
         for (String rowString : rowBuffer) {
-            String[] rowValuesAndColumnName = rowString.split(":");
-            columnNames.add(rowValuesAndColumnName[1]);
-            List<String> rowValues = Arrays.asList(rowValuesAndColumnName[0].split(","));
-            for (int i = 0; i < rowValues.size() - 1; i += 2) {
+            String[] rowValuesAndColumnName = rowString.split(":");  //делим на значения и название колонки
+            columnNames.add(rowValuesAndColumnName[1]); //добавляем название колонки
+            List<String> rowValues = Arrays.asList(rowValuesAndColumnName[0].split(",")); //делим на значения конкретной колонки
+            for (int i = 0; i < rowValues.size() - 1; i += 2) { //добавляем значения в мапу - берем только значения
                 List<String> oneValueOfColumnAsList = new ArrayList<>(Collections.singletonList(rowValues.get(i + 1).trim()));
                 rowsValuesMap.merge(rowValues.get(i).trim(), oneValueOfColumnAsList, (oldValue, newValue) -> {
                     oldValue.addAll(oneValueOfColumnAsList);

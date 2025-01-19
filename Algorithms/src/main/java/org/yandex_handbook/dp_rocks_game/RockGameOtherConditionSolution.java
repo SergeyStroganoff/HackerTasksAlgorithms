@@ -18,56 +18,49 @@ public class RockGameOtherConditionSolution {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int m = scanner.nextInt();
-        System.out.println(checkIfFirstIsWinner(n, m));
+        System.out.println(isFirstPlayerWinner(n, m));
     }
 
-    private static String checkIfFirstIsWinner(int n, int m) {
 
-        byte[][] memoryArray = new byte[n + 1][m + 1];
-        memoryArray[0][0] = 1;
-        memoryArray[0][1] = 2;
-        memoryArray[0][2] = 2;
-        memoryArray[1][0] = 2;
-        memoryArray[2][0] = 2;
-        memoryArray[1][1] = 2;
-        memoryArray[1][2] = 1;
-        memoryArray[2][1] = 1;
-        memoryArray[2][2] = 1;
+    public static String isFirstPlayerWinner(int n, int m) {
+        boolean[][] dp = new boolean[n + 1][m + 1];
 
-        for (int row = 0; row <= n; row++) {
-            for (int column = 0; column <= m; column++) {
-                if (memoryArray[row][column] == 0) {
-                    byte left = 0;
-                    byte up = 0;
-                    byte diagonal = 0;
-                    byte leftOnTwo = 0;
-                    byte upOnTwo = 0;
+        // Заполняем базовые случаи
+        dp[0][0] = false; // Оба набора пусты, победитель не определен
 
-                    if (row - 1 >= 0) {
-                        up = memoryArray[row - 1][column];
-                    }
-                    if (column - 1 >= 0) {
-                        left = memoryArray[row][column - 1];
-                    }
-                    if (row - 2 >= 0) {
-                        upOnTwo = memoryArray[row - 2][column];
-                    }
-                    if (column - 2 >= 0) {
-                        leftOnTwo = memoryArray[row][column - 2];
-                    }
+        // Заполняем значения для одного пустого набора
+        for (int i = 1; i <= n; i++) {
+            dp[i][0] = false; // Первый игрок не может взять камень из пустого набора
+        }
+        for (int j = 1; j <= m; j++) {
+            dp[0][j] = false; // Первый игрок не может взять камень из пустого набора
+        }
 
-                    if (left != 0 && up != 0) {
-                        diagonal = memoryArray[row - 1][column - 1];
-                    }
-                    if (left == 1 || up == 1 || diagonal == 1 || upOnTwo == 1 || leftOnTwo == 1) {
-                        memoryArray[row][column] = 2;
-                    } else {
-                        memoryArray[row][column] = 1;
-                    }
+        // Заполняем оставшиеся значения используя рекуррентные соотношения
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                boolean canWin = false;
+                if (i - 1 >= 0 && !dp[i - 1][j]) {
+                    canWin = true; // Можно взять один камень из первого набора
                 }
+                if (j - 1 >= 0 && !dp[i][j - 1]) {
+                    canWin = true; // Можно взять один камень из второго набора
+                }
+                if (i - 2 >= 0 && !dp[i - 2][j]) {
+                    canWin = true; // Можно взять два камня из первого набора
+                }
+                if (j - 2 >= 0 && !dp[i][j - 2]) {
+                    canWin = true; // Можно взять два камня из второго набора
+                }
+                if (i - 1 >= 0 && j - 1 >= 0 && !dp[i - 1][j - 1]) {
+                    canWin = true; // Можно взять два камня из одного набора и один из другого
+                }
+                dp[i][j] = canWin;
             }
         }
-        MultidimensionalArrayUtil.print(memoryArray);
-        return memoryArray[n][m] == 2 ? "Win" : "Loose";
+
+
+        MultidimensionalArrayUtil.print(dp);
+        return dp[n][m] ? "Win" : "Loose";
     }
 }

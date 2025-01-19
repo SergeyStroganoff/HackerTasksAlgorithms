@@ -3,6 +3,7 @@
 /IDEA
 /.idea
 *.class
+.idea
 
 # Log file
 *.log
@@ -62,8 +63,9 @@ hs_err_pid*
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
-# *.ipr
+ *.iml
+ *.ipr
+ *.png
 
 # CMake
 cmake-build-*/
