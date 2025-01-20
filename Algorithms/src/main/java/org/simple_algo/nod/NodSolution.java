@@ -2,10 +2,12 @@ package org.simple_algo.nod;
 
 import java.util.Scanner;
 
+
+//not effective solution
+
 public class NodSolution {
 
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         int a = scanner.nextInt();
         int b = scanner.nextInt();
@@ -17,7 +19,6 @@ public class NodSolution {
         if (a == 0) return b;
         if (b == 0) return a;
         if (a == b) return a;
-
         while (a != 0 && b != 0) {
             if (a > b) {
                 a = a % b;
