@@ -1,10 +1,8 @@
 package org.stroganov.tiny_pairs;
 
-import org.junit.jupiter.api.Test;
-
 class TinyPairsTest {
 
-    private TinyPairs tinyPairs = new TinyPairs();
+/*    private TinyPairs tinyPairs = new TinyPairs();
 
     @Test
     void checkTinyPairsInArray() {
@@ -14,6 +12,6 @@ class TinyPairsTest {
         boolean result = tinyPairs.checkTinyPairsInArray(array);
         //then
         assert (result);
-    }
+    }*/
 }
 

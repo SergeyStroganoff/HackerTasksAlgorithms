@@ -1,7 +1,6 @@
-package org.stroganov.permutations;
+package org.combinatorics.permutations;
 
 import java.util.Arrays;
-import java.util.Set;
 
 public class PermutationsWithLimits {
 
@@ -25,20 +24,6 @@ public class PermutationsWithLimits {
         //   HashSet<Integer> result = new HashSet<>();
         //   permuteIteration(digits, swaps, result);
         //   System.out.println(Arrays.toString(result.toArray()).toString());
-    }
-
-    public static void permuteIteration(char[] charArray, int swaps, Set<Integer> result) {
-        if (swaps == 0) {
-            return;
-        }
-        for (int i = 0; i < charArray.length - 1; i++) {
-            for (int j = i + 1; j < charArray.length; j++) {
-                int number = Integer.parseInt(new String(charArray));
-                result.add(number);
-                permuteIteration(charArray, swaps - 1, result);
-                swap(charArray, i, j);
-            }
-        }
     }
 
     private static void permute(char[] digits, int startIndex, int swapsLeft) {

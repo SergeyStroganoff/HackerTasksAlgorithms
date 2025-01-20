@@ -1,4 +1,4 @@
-package org.stroganov.permutations;
+package org.combinatorics.permutations;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,6 +24,18 @@ public class SimplePermutations {
                 permute(array, startIndex + 1, resultSet);
                 swap(array, i, j);
             }
+        }
+    }
+
+    public static void permute2(char[] array, int startIndex, Set<String> resultSet) {
+        if (startIndex == array.length - 1) {
+            resultSet.add(new String(array)); // Add permutation when startIndex reaches the end
+            return;
+        }
+        for (int i = startIndex; i < array.length; i++) {
+            swap(array, startIndex, i); // Swap the current index with the startIndex
+            permute(array, startIndex + 1, resultSet); // Recurse with the next index
+            swap(array, startIndex, i); // Backtrack to restore the array's original state
         }
     }
 

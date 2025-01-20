@@ -1,7 +1,6 @@
-package org.stroganov.tiny_pairs;
+package org.combinatorics.permutations;
 
 import org.junit.jupiter.api.Test;
-import org.stroganov.permutations.PermutationsWithLimits;
 
 class PermutationsTest {
 

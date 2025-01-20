@@ -37,9 +37,7 @@ public class RestOfDivision {
         if (n <= 1) {
             return n % m;
         }
-
         long a = 0, b = 1, c = 1;
-
         for (long i = 2; i <= n; i++) {
             c = (a + b) % m;
             a = b;
