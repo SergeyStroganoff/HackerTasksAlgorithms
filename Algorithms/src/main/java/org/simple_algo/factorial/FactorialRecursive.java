@@ -1,4 +1,4 @@
-package org.stroganov.factorial;
+package org.simple_algo.factorial;
 
 public class FactorialRecursive {
 

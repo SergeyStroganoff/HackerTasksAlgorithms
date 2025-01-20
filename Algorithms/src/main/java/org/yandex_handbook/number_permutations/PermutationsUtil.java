@@ -1,6 +1,6 @@
 package org.yandex_handbook.number_permutations;
 
-import org.stroganov.factorial.FactorialMath;
+import org.simple_algo.factorial.FactorialMath;
 
 import java.util.Scanner;
 

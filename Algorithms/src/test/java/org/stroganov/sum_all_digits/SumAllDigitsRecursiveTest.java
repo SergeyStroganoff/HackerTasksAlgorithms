@@ -1,8 +1,9 @@
 package org.stroganov.sum_all_digits;
 
 import org.junit.jupiter.api.Test;
+import org.simple_algo.sum_all_digits.SumAllDigitsRecursive;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SumAllDigitsRecursiveTest {
 

@@ -1,4 +1,4 @@
-package org.stroganov.factorial;
+package org.simple_algo.factorial;
 
 import java.util.Scanner;
 

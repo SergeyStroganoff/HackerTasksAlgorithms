@@ -1,8 +1,9 @@
 package org.stroganov.factorial;
 
 import org.junit.jupiter.api.Test;
+import org.simple_algo.factorial.FactorialRecursive;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FactorialRecursiveTest {
 

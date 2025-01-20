@@ -1,4 +1,4 @@
-package org.stroganov.find_number_s_arkhipov;
+package org.simple_algo.find_number_s_arkhipov;
 
 import java.util.Arrays;
 

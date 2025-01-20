@@ -25,13 +25,6 @@ public int rookIntersection(int chessDeskSize, int[][] rooksCoordinates) {
                 }
             }
         }
-
-
-
-
-
-
-
         return result;
     }
 
