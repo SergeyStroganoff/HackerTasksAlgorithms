@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 
 /**
- * Anagram check
+ * Anagram check - "abc" and "bac" are anagrams
  */
 
 public class AnagramCheck {
