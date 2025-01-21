@@ -1,6 +1,7 @@
 package org.stroganov.fibonachi_tasks;
 
 /**
+ * Является ли число числом Фибоначи ?
  * A number 'num' is a Fibonacci number if and only if one of 5*num^2 + 4 or 5*num^2 - 4 is a perfect square
  * The time complexity of this solution is O(1)
  * The space complexity of this solution is O(1)

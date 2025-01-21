@@ -1,4 +1,4 @@
-package org.stroganov.polindrom_word;
+package org.simple_algo.palindrome;
 
 import java.util.ArrayDeque;
 
@@ -26,13 +26,6 @@ public class PalindromeUtil {
 
         char[] wordArray = word.toCharArray();
         int middle = wordArray.length / 2;
-        // while (middle > 0) {
-        //     if (wordArray[middle - 1] != wordArray[wordArray.length - middle]) {
-        //         return false;
-        //     }
-        //     middle--;
-        // }
-
         ArrayDeque<Character> stack = new ArrayDeque<>();
         for (int i = 0; i <= middle; i++) {
             stack.push(wordArray[i]);
@@ -45,9 +38,7 @@ public class PalindromeUtil {
         return true;
     }
 
-
     boolean isPalindrome(String word) {
-
         if (word == null) {
             return false;
         }
