@@ -73,6 +73,6 @@ public class RockGameSecondConditionImproved {
 
         }
         MultidimensionalArrayUtil.print(dp);
-        return dp[n - 1][m - 1] ? "Win" : "Lose";
+        return dp[n][m] ? "Win" : "Lose";
     }
 }
