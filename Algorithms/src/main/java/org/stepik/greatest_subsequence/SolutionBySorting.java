@@ -18,7 +18,7 @@ public class SolutionBySorting {
     }
 
     public static int[][] calculateLCS(int[] arr1, int[] arr2) {
-        System.out.println("");
+        System.out.println(" ");
         System.out.println("arr1: " + Arrays.toString(arr1));
         System.out.println("arr2: " + Arrays.toString(arr2));
         int m = arr1.length;

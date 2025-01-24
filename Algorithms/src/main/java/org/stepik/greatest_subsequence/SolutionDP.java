@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SolutionDP {
     public static void main(String[] args) {
-        int[] sample = {5, 10, 6, 12, 3, 24, 7, 8};
+        int[] sample = {5, 10, 6, 12, 3, 24, 7, 8, 30};
         int maxSequenceLength = getGreatestSubsequence(sample);
         System.out.println("MAx subsequence is: " + maxSequenceLength);
 
@@ -23,13 +23,11 @@ public class SolutionDP {
         int[] memory = new int[arraySequence.length];
         int[] prev = new int[arraySequence.length]; //massive for save privies index of element in subsequence
         Arrays.fill(memory, 1);
-        System.out.println(Arrays.toString(memory));
-
         for (int i = 0; i < arraySequence.length; i++) {
             for (int j = i + 1; j < arraySequence.length; j++) {
                 if (arraySequence[j] > arraySequence[i] && memory[j] < memory[i] + 1) {
                     memory[j] = memory[i] + 1;
-                    prev[j] = i; //fill array to get numders of greatest subsequence
+                    prev[j] = i; //fill array to get numbers of greatest subsequence
                 }
                 System.out.println(Arrays.toString(memory));
             }
