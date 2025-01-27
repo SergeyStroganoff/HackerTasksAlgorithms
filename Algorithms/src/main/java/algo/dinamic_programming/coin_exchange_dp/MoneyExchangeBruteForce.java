@@ -5,23 +5,38 @@ import java.util.*;
 public class MoneyExchangeBruteForce {
     public static Set<String> bunchOfResult = new HashSet<>();
     public static List<List<Integer>> accumulatorList = new ArrayList<>();
+    public static TreeSet<List<Integer>> accumulatorTreeSet = new TreeSet<>((x, y) -> x.size() - y.size());
+    private static long count;
 
     public static void main(String[] args) {
         //TASK data
-        int moneyAmount = 60;
-        int[] nominalBuf = {5, 10, 25, 1};
+        int moneyAmount = 34;
+        //int[] nominalBuf = {5, 10, 25, 1};
+        int[] nominalBuf = {3, 5, 8, 1};
         bruteForceIterationWithLimit2(moneyAmount, nominalBuf, 0, Collections.emptyList());
-        System.out.println(accumulatorList.size());
-        String minCountOfCoin = accumulatorList.stream().min((x, z) -> x.size() - z.size()).get().toString();
-        System.out.println(minCountOfCoin);
+        System.out.println(accumulatorTreeSet.size());
+        //String minCountOfCoin = accumulatorList.stream().min((x, z) -> x.size() - z.size()).get().toString();
+        System.out.println(accumulatorTreeSet.first());
+        System.out.println(accumulatorTreeSet.pollLast());
         //accumulatorList.forEach(System.out::println);
+        System.out.println("Колличество итераций: " + count);
     }
 
     private static void bruteForceIterationWithLimit2(int moneyAmount, int[] nominalBuf, int startIndex, List<Integer> currentCombination) {
+
+        //добавляем условие выхода из рекурсии если текущая комбинация монет уже превысила минимальную результативную комбинацию
+        // уже имеющуюся в коллекции аккумуляторе - так мы не перебираем длинные сочетания
+        if (accumulatorTreeSet.size() > 0 && currentCombination.size() > accumulatorTreeSet.first().size()) {
+            return;  // выходим из метода и останавливаем рекурсию этой ветки т.к. есть более оптимальное (короткое сочетание монет)
+        }
+        // счетчик итераций
+        count++;
+        //
         currentCombination = new ArrayList<>(currentCombination); // ветвим временные Листы c каждым ветвлением создавай новый Лист принимающий уже сформированную ветку
         //добавляем временный массив в массив аккумулятор только, если только moneyAmount == 0
         if (moneyAmount == 0) {
-            accumulatorList.add(currentCombination);
+            // accumulatorList.add(currentCombination);
+            accumulatorTreeSet.add(currentCombination);
         }
         for (int i = 0; i < nominalBuf.length; i++) { //если нужны не уникальные сочетания, а с повторениями, то i=0 иначе startIndex.
             int moneyLimitReduced = moneyAmount - nominalBuf[i]; // уменьшаем сумму денег на номинал buf[i]
