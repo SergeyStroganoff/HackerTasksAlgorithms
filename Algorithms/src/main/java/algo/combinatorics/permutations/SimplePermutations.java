@@ -16,9 +16,16 @@ public class SimplePermutations {
     }
 
 
+    /**
+     * Перестановки начиная с начального индекса перебираем массив
+     *
+     * @param array
+     * @param startIndex
+     * @param resultSet
+     */
     public static void permute(char[] array, int startIndex, Set<String> resultSet) {
+        resultSet.add(Arrays.toString(array));
         for (int i = startIndex; i < array.length; i++) {
-            resultSet.add(Arrays.toString(array));
             for (int j = i + 1; j < array.length; j++) {
                 swap(array, i, j);
                 permute(array, startIndex + 1, resultSet);
@@ -34,7 +41,7 @@ public class SimplePermutations {
         }
         for (int i = startIndex; i < array.length; i++) {
             swap(array, startIndex, i); // Swap the current index with the startIndex
-            permute(array, startIndex + 1, resultSet); // Recurse with the next index
+            permute2(array, startIndex + 1, resultSet); // Recurse with the next index
             swap(array, startIndex, i); // Backtrack to restore the array's original state
         }
     }
