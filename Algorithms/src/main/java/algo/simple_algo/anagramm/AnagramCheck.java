@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 /**
  * Anagram check - "abc" and "bac" are anagrams
+ * Если строки null или не равны по длине -> false
+ * Переводим строки в массивы char, сортируем и затем сравниваем Array,equals.
  */
 
 public class AnagramCheck {
