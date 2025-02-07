@@ -11,7 +11,6 @@ import java.util.*;
  * проверяем если снова появились ноды с 0 связанностью заносим в очеред и повторяем цикл.
  */
 
-
 public class KahnAlgorithm {
     public static void main(String[] args) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -51,9 +50,7 @@ public class KahnAlgorithm {
                 }
             }
             //offerAllZerroIncomeNodes(integerPriorityQueue, indeqree);
-
         }
-
         if (resultList.size() != count) {
             throw new IllegalStateException("Graph contains a cycle! No topological order possible.");
         }
@@ -68,5 +65,4 @@ public class KahnAlgorithm {
             }
         }
     }
-
 }
