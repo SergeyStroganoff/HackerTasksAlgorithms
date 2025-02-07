@@ -19,8 +19,8 @@ public class SwapsInGridSolutions {
             return "NO";
         }
         char[] temp = null;
-        for (int i = 0; i < grid.size(); i++) {
-            char[] charBuf = grid.get(i).toCharArray();
+        for (String s : grid) {
+            char[] charBuf = s.toCharArray();
             Arrays.sort(charBuf);
             if (temp == null) {
                 temp = charBuf;
