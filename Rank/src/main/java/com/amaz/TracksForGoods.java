@@ -80,7 +80,8 @@ public class TracksForGoods {
             }
             // Добавляем оставшиеся товары обратно в очередь, т.к. не вместили их в грузовик и идем грузить другой грузовик
             priorityQueue.addAll(remainingProducts);
-            truckCount++; //учитываем грузовики;
+            //учитываем грузовики;
+            truckCount++;
         }
         return truckCount;
     }
