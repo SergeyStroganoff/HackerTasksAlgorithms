@@ -30,6 +30,7 @@ public class MinHeapSorting {
     }
 
     private static void buildHeap(int[] array) {
+
         for (int i = (array.length - 1) / 2; i >= 0; i--) {
             shiftDownElementInHeap(array, i, array.length - 1);
         }
