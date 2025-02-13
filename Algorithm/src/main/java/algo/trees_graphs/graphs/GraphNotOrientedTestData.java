@@ -6,7 +6,6 @@ public class GraphNotOrientedTestData {
     public static void main(String[] args) {
 
     }
-
     private final Map<Integer, List<Integer>> graph = new HashMap<>();
     private final Map<Integer, Integer> memo = new HashMap<>(); // Запоминаем минимальный путь до узла
 
@@ -90,7 +89,6 @@ public class GraphNotOrientedTestData {
     public List<Integer> get(Integer node) {
         return graph.get(node);
     }
-
     public List<Integer> getOrDefault(int node, List<Integer> emptyList) {
         return graph.getOrDefault(node, emptyList);
     }
