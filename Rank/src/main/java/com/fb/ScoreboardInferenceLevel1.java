@@ -1,8 +1,6 @@
 package com.fb;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * You are spectating a programming contest with N competitors,
@@ -24,7 +22,6 @@ public class ScoreboardInferenceLevel1 {
         // Write your code here
         int result = 0;
         Arrays.sort(S);
-        List<Integer> scores = new ArrayList<>();
         int maxScore = S[S.length - 1];
         int twoNumbersForMaxScore = maxScore / 2;
         int oneNumberForMaxScore = maxScore % 2;
