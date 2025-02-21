@@ -13,7 +13,8 @@ class ScoreboardInferenceLevel2Test {
     static final String[] arrayOf = {"4334", "12345"};
 
     static Stream<String> arrayOf() { // Provide test data as a Stream
-        return Stream.of("4334", "12345", "1", "0", "123456789");
+        return Stream.of("12,12,12,12", "1,1,9,12,25", "1,1,1,", "7,8,9",
+                "1,2,2,2", "1,2,4,8", "1,2,3,4,5,6,7,8,9", "2,4,6,8", "12,14,16,18,20", "3,5,7,9,11"); //for last set is - 1,2,3,3
     }
 
     @DisplayName("Comparing test effective method via bruteforce method")
@@ -23,7 +24,7 @@ class ScoreboardInferenceLevel2Test {
     @MethodSource("arrayOf")
     void testGetMinProblemCount(String nextIntString) {
 
-        int[] intBuf = Arrays.stream(nextIntString.split(""))
+        int[] intBuf = Arrays.stream(nextIntString.split(","))
                 .filter(x -> !x.isEmpty())  // More readable than Objects.equals(x, "")
                 .mapToInt(Integer::parseInt) // Converts directly to an int array
                 .toArray();

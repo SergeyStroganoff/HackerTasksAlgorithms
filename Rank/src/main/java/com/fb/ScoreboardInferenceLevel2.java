@@ -9,12 +9,26 @@ public class ScoreboardInferenceLevel2 {
     }
 
     public static int getMinProblemCount(int N, int[] S) {
+
         // Write your code here
         int resultCombinationWithTree = 0;
         Arrays.sort(S);
         int oneCount = 0;
         int twoCount = 0;
         int threeCount = 0;
+        int firstNumberCase = Integer.MAX_VALUE;
+        boolean isAllNumbersEven = Arrays.stream(S).noneMatch(s -> s % 2 == 0);
+        boolean isAllNumbersOdd = Arrays.stream(S).allMatch(s -> s % 2 == 0);
+
+
+        if (S[0] == 1 || isAllNumbersEven) {
+            oneCount = 1;
+            int treeCount = (S[S.length - 1] - oneCount) / 3;
+            int rest = (S[S.length - 1] - oneCount) % 3;
+            firstNumberCase = oneCount + treeCount + (rest != 0 ? 1 : 0);
+            return firstNumberCase;
+        }
+
 
         for (int i = S.length - 1; i >= 0; i--) {
             int tree = S[i] / 3;
@@ -27,25 +41,12 @@ public class ScoreboardInferenceLevel2 {
                     oneCount = 1;
                 }
             }
-        }
-        resultCombinationWithTree = threeCount + twoCount + oneCount;
-        int resultCombinationsTwo = getMinCombinationsWithTwo(S);
-        return Math.min(resultCombinationsTwo, resultCombinationWithTree);
-    }
-
-    private static int getMinCombinationsWithTwo(int[] S) {
-        int maxScore = S[S.length - 1];
-        int twoNumbersForMaxScore = maxScore / 2;
-        int oneNumberForMaxScore = maxScore % 2;
-        int result = twoNumbersForMaxScore + oneNumberForMaxScore;
-        if (oneNumberForMaxScore == 0) {
-            for (int i = 0; i < S.length - 1; i++) {
-                if (S[i] % 2 != 0) {
-                    result++;
-                    return result;
-                }
+            if (tree != 0 && twoCount != 0 && oneCount != 0) {
+                threeCount--;
             }
         }
-        return result;
+        return threeCount + twoCount + oneCount;
+        //return Math.min(firstNumberCase, resultCombinationWithTree);
     }
+
 }
