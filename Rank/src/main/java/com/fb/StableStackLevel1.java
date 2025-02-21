@@ -17,10 +17,33 @@ public class StableStackLevel1 {
 
     public static void main(String[] args) {
         int[] test = {2, 5, 3, 6, 5};
-        System.out.println(getMinimumDeflatedDiscCount(0, test));
+        System.out.println(getMinimumDeflatedDiscCountRight(0, test));
     }
 
-    public static int getMinimumDeflatedDiscCount(int N, int[] R) {
+    public static int getMinimumDeflatedDiscCountRight(int N, int[] R) {
+        //Border case
+        if (R.length == 1) {
+            return 0;
+        }
+        if (R[R.length - 1] < R.length) {
+            return -1;
+        }
+        int count = 0;
+        for (int i = R.length - 1; i > 0; i--) {
+            if (R[i - 1] >= R[i]) {
+                R[i - 1] = R[i] - 1;
+                if (R[i - 1] == 0) {
+                    return -1;
+                }
+                count++;
+            }
+
+        }
+        return count;
+    }
+
+
+    public static int getMinimumDeflatedDiscCountWrong(int N, int[] R) {
         //Border case
         if (R.length == 1) {
             return 0;
