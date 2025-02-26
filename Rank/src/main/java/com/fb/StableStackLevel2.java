@@ -24,46 +24,43 @@ public class StableStackLevel2 {
         int[] test3 = {6, 5, 4, 3};
         int[] test4 = {100, 100, 1, 1};
         int[] test5 = {6, 5, 2, 4, 4, 7};
-        System.out.println(getMinimumSecondsRequired(5, test5, 1, 1));
+        System.out.println(getMinimumSecondsRequired(5, test1, 1, 1));
     }
 
     public static long getMinimumSecondsRequired(int N, int[] R, int A, int B) {
-        // Write your code here
         if (N == 1 || R.length == 1) {
             return 1;
         }
-        /*Set<Integer> special = new HashSet<>();
-        for (int n = 0; n < R.length; n++) {
-            if (R[n] - n - 1 < 0) {
-                special.add(n);
-            }
-        }*/
-
         int maxValue = Arrays.stream(R).max().orElse(0);
         long[][] dp = new long[R.length][maxValue + 2];
-
+        for (long[] nextRaw : dp) {
+            Arrays.fill(nextRaw, Long.MAX_VALUE);
+        }
         for (int i = 0; i < R.length; i++) {
+            long prevMinValue = Long.MAX_VALUE;
             for (int m = 1; m <= maxValue + 1; m++) {
+                prevMinValue = i == 0 ? 0 : Math.min(prevMinValue, dp[i - 1][m - 1]);
                 if (m > i) {
-                    long prev = i == 0 ? 0 : dp[i - 1][m - 1];
-                    int k = m >= R[i] ? A : B;
-                    dp[i][m] = prev + (long) Math.abs(R[i] - m) * k;
+                    //long prev = i == 0 ? 0 : getMinInTwoDimensionArray(dp, i - 1, m - 1);
+                    int cost = m >= R[i] ? A : B;
+                    dp[i][m] = Math.min(prevMinValue + (long) Math.abs(R[i] - m) * cost, dp[i][m - 1]);
                 }
             }
         }
         multiDimessialArrayPrint(dp);
-        return searchMinElementInLastRaw(dp);
+        return dp[dp.length - 1][dp[0].length - 1];//getMinInTwoDimensionArray(dp, dp.length - 1, dp[0].length - 1);
     }
 
-    public static long searchMinElementInLastRaw(long[][] array) {
-        long minVal = Integer.MAX_VALUE;
-        for (long nextValue : array[array.length - 1]) {
-            if (nextValue != 0 && nextValue < minVal) {
-                minVal = nextValue;
+    public static long getMinInTwoDimensionArray(long[][] array, int raw, int to) {
+        long minVal = Long.MAX_VALUE;
+        for (int i = 0; i <= to; i++) {
+            if (array[raw][i] < minVal) {
+                minVal = array[raw][i];
             }
         }
         return minVal;
     }
+
 
     public static void multiDimessialArrayPrint(long[][] array) {
         StringBuilder stringBuilder = new StringBuilder();
