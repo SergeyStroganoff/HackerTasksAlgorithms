@@ -9,7 +9,7 @@ import java.util.Stack;
  * <p>
  * Given an integer array nums, return the maximum width of a Diapazonramp in nums.
  * If there is no ramp in nums, return 0.
- * solution: monoton stack;
+ * solution: monotone stack;
  */
 public class MaxWidthTwoIndexes {
 
@@ -23,7 +23,7 @@ public class MaxWidthTwoIndexes {
     }
 
     /*
-    Face desigion - O(n2)
+    Face decision - O(n2)
      */
     public static int maxWidthRamp(int[] array) {
         int maxD = 0;
@@ -44,7 +44,7 @@ public class MaxWidthTwoIndexes {
 
     /**
      * Alternative desigion based on crating addition array with the best (max element for each subarray)
-     * Мы сожем двигать правый указатель до тех пор пока левый ылемент гарантировано меньше лучьшего эелемента занесенного в индекс
+     * Мы сожем двигать правый указатель до тех пор, пока левый ылемент гарантировано меньше лучьшего эелемента занесенного в индекс
      * right вспомогательного массива. Почему это работает. Потому что - right на каждом этапе может быть и не оптимален
      * но зато валиден, т.е. отвечает условию, но если значение стало меньше - это значит, что более right на право двигать
      * нет смысла, там не будет более больших значений ->    нам надо двигать левый указатель чтобы найти подходящий элемент.
@@ -77,7 +77,6 @@ public class MaxWidthTwoIndexes {
             maxWidth = Math.max(maxWidth, right - left);
             right++;
         }
-
         return maxWidth;
     }
 }
