@@ -1,7 +1,7 @@
 package com.fb;
 
 /**
- * Given array of numbers. Find any local min - number which is less or equal
+ * Given array of numbers. Find any local minimum - number which is less or equal
  * left and right neighbours
  */
 public class LocalMinimumInArray {
