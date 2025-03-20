@@ -25,42 +25,126 @@ public class DecodeString {
 
     public static void main(String[] args) {
         String testString = "3[a2[c]]";
-        System.out.print(decodeString(testString));
-    }
+        String testString2 = "3[a]2[bc]";
+        String testString3 = "abc3[cd]xyz";
+        String testString4 = "3[z]2[2[y]pq4[2[jk]e1[f]]]ef";
+        //zzz yypqjkjkjkjkjkjkjkjkefyypqjkjkjkjkjkjkjkjkef ef   ef
+        System.out.println(testString);
+        System.out.print(decodeStringNew(testString));
 
+    }
     public static String decodeString(String s) {
-        StringBuilder resultString = new StringBuilder();
+
+        String intermediateResultString = "";
+        StringBuilder result = new StringBuilder();
         Stack<Integer> stackDigital = new Stack<>();
         Stack<String> stackLString = new Stack<>();
-
         int leftIndex = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '[') {
-                String numberString = s.substring(leftIndex, i);
+        int currentPosition = 0;
+        while (currentPosition < s.length()) {
+            // если встретили открывающую скобу - парсим число перед скобой от leftIndex до скобы
+            if (s.charAt(currentPosition) == '[') {
+                String numberString = s.substring(leftIndex, currentPosition);
                 int value = Integer.parseInt(numberString);
                 stackDigital.push(value);
-                int rightIndex = 1;
-                while (i + rightIndex < s.length() && s.charAt(i + rightIndex) >= 97 && s.charAt(i + rightIndex) <= 122) {
+                //поиск всех символов справа от скобки [
+                int rightIndex = currentPosition;
+                while (rightIndex + 1 < s.length() && s.charAt(rightIndex + 1) >= 97 && s.charAt(rightIndex + 1) <= 122) {
                     rightIndex++;
                 }
-                // указывает на последний печатный символ
-                // i += rightIndex;
-                String toRepeat = s.substring(i + 1, i + rightIndex + 1);
+                // строка для приращения и повторения
+                String toRepeat = s.substring(currentPosition + 1, rightIndex + 1);
                 stackLString.push(toRepeat);
-                leftIndex = i + rightIndex;
+                // сдвигаем текущую позиция на индекс за строку
+                currentPosition = rightIndex + 1;
+                leftIndex = rightIndex + 1;
             }
-            if (s.charAt(i) == ']') {
-                while (!stackLString.isEmpty()) {
-                    Integer valueToRepeat = stackDigital.pop();
-                    for (int n = 1; n <= valueToRepeat; n++) {
-                        resultString.append(resultString.toString() + stackLString.pop());
-                    }
+            if (s.charAt(currentPosition) == ']' && !stackDigital.isEmpty()) {
+                Integer valueToRepeat = stackDigital.pop();
+                String toRepeat = stackLString.pop() + intermediateResultString;
+                String repeatedString = toRepeat.repeat(valueToRepeat);
+                intermediateResultString = repeatedString;
+                //acc acc acc
+                if (stackLString.isEmpty()) {
+                    result.append(intermediateResultString);
+                    intermediateResultString = "";
                 }
+                leftIndex++;
+                currentPosition++;
+            } else {
+                if (s.charAt(currentPosition) >= 97 && s.charAt(currentPosition) <= 122) {
+                    result.append(s.charAt(currentPosition));
+                    leftIndex++;
+                } else {
+                    //  stackDigital.push(Integer.parseInt(String.valueOf(s.charAt(currentPosition))));
+                    //  stackDigital.push(4);
+                }
+                currentPosition++;
             }
-
-
         }
+        return result.toString();
+    }
 
-        return resultString.toString();
+    public static String decodeStringNew(String decodeString) {
+        Stack<Integer> bracketPositions = new Stack<>();
+        Stack<Integer> multiplierStack = new Stack<>(); //??
+        Stack<String> stringStack = new Stack<>();
+        StringBuilder mainString = new StringBuilder();
+        int lastLeftPosition = -1;
+        for (int i = 0; i < decodeString.length(); i++) {
+
+            //прибавляем все символы в вне брекетов
+            if (bracketPositions.isEmpty() && decodeString.charAt(i) >= 97 && decodeString.charAt(i) <= 122) {
+                mainString.append(decodeString.charAt(i));
+            }
+            if (decodeString.charAt(i) == '[') {
+                bracketPositions.push(i);
+                multiplierStack.push(getMultiplier(decodeString, i));
+                stringStack.push("");
+            }
+            if (decodeString.charAt(i) == ']') {
+                int leftPosition = bracketPositions.pop();
+                int multiplier = multiplierStack.pop();
+                String currentString = stringStack.pop();
+                if (bracketPositions.isEmpty() && stringStack.isEmpty()) {
+                    String string = currentString + decodeString.substring(leftPosition + 1, i);
+                    string = string.repeat(multiplier);
+                    mainString.append(string);
+                } else {
+                    if (!stringStack.isEmpty()) {
+                        String string = currentString + decodeString.substring(leftPosition + 1, i);
+
+                    }
+
+
+/*                    String s = decodeString(decodeString.substring(leftPosition + 1, i));
+                    s = s.repeat(multiplier);
+                    mainString.append(s);*/
+                }
+
+            }
+        }
+        return mainString.toString();
+    }
+
+    private static Integer getMultiplier(String s, int position) {
+        int leftPosition = position - 1;
+        for (int i = position - 1; i >= 0; i--) {
+            if (s.charAt(i) >= 48 && s.charAt(i) <= 57) {
+                leftPosition = i;
+            } else {
+                break;
+            }
+        }
+        return Integer.parseInt(s.substring(leftPosition, position));
     }
 }
+
+// If meet alphabet add to current string as continues
+// If meet [ -> than
+//        -  save position of open ->
+//        -  save value of multiplier
+//        -  start new empty string and push to stack
+
+// If meet close:
+// - get entire string or get result and multipli
