@@ -42,7 +42,7 @@ public class DecodeString {
         strings.push(new StringBuilder());
         for (int i = 0; i < s.length(); i++) {
             //прибавляем все символы во вне брекетов
-            if (s.charAt(i) >= 97 && s.charAt(i) <= 122) {
+            if (Character.isLetter(s.charAt(i))) {
                 strings.peek().append(s.charAt(i));
             }
             if (s.charAt(i) == '[') {
@@ -77,5 +77,36 @@ public class DecodeString {
             }
         }
         return Integer.parseInt(s.substring(leftPosition, position));
+    }
+
+
+    public static String decodeStringIterativeCGPT(String s) {
+        Deque<StringBuilder> strings = new ArrayDeque<>();
+        Deque<Integer> multiplierStack = new ArrayDeque<>();
+        strings.push(new StringBuilder());
+        int i = 0;
+
+        while (i < s.length()) {
+            char c = s.charAt(i);
+
+            if (Character.isLetter(c)) {
+                strings.peek().append(c);
+            } else if (Character.isDigit(c)) {
+                int start = i;
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
+                    i++;
+                }
+                multiplierStack.push(Integer.parseInt(s.substring(start, i)));
+                continue; // Move to the next character without incrementing i again
+            } else if (c == '[') {
+                strings.push(new StringBuilder());
+            } else if (c == ']') {
+                int multiplier = multiplierStack.pop();
+                String repeated = strings.pop().toString().repeat(multiplier);
+                strings.peek().append(repeated);
+            }
+            i++;
+        }
+        return strings.pop().toString();
     }
 }
