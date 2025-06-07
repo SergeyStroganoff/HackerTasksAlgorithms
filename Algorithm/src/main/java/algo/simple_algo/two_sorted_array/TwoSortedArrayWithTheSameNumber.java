@@ -1,5 +1,6 @@
 package algo.simple_algo.two_sorted_array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,8 +13,43 @@ public class TwoSortedArrayWithTheSameNumber {
         System.out.println(integerList);
     }
 
+    /**
+     * Most effective method O(n+m), memory O(k)
+     *
+     * @param firstArray
+     * @param secondArray
+     * @return
+     */
+
+    private static List<Integer> getIntersectional(int[] firstArray, int[] secondArray) {
+        List<Integer> intersection = new ArrayList<>();
+        int pointerFirst = 0;
+        int pointerSecond = 0;
+        while (pointerFirst < firstArray.length && pointerSecond < secondArray.length) {
+            if (firstArray[pointerFirst] == secondArray[pointerSecond]) {
+                intersection.add(firstArray[pointerFirst]);
+                pointerFirst++;
+                pointerSecond++;
+            } else {
+                if (firstArray[pointerFirst] > secondArray[pointerSecond]) {
+                    pointerSecond++;
+                } else {
+                    pointerFirst++;
+                }
+            }
+        }
+        return intersection;
+    }
+
+    /**
+     * Laconic but worse: O(n*m), memory O(n+m). It uses contains() method under the hood
+     *
+     * @param firstArray
+     * @param secondArray
+     * @return
+     */
     private static List<Integer> findSameNumbers(int[] firstArray, int[] secondArray) {
-        List<Integer> firstList = new java.util.ArrayList<>(Arrays.stream(firstArray).boxed().toList());
+        List<Integer> firstList = new ArrayList<>(Arrays.stream(firstArray).boxed().toList());
         firstList.retainAll(Arrays.stream(secondArray).boxed().toList());
         return firstList;
     }
@@ -25,7 +61,6 @@ public class TwoSortedArrayWithTheSameNumber {
             if (findEqualsValue(nextValue, secondArray)) {
                 result.add(nextValue);
             }
-
         }
         return result;
     }
@@ -34,4 +69,6 @@ public class TwoSortedArrayWithTheSameNumber {
         int index = Arrays.binarySearch(secondArray, nextValue);
         return index >= 0;
     }
+
 }
+
