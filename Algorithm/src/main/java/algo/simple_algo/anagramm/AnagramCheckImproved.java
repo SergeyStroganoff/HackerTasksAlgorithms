@@ -67,7 +67,6 @@ public class AnagramCheckImproved {
                 charCounts.remove(c); // Remove zero entries to save space
             }
         }
-
         // If the map is empty, the strings are anagrams
         return charCounts.isEmpty();
     }
