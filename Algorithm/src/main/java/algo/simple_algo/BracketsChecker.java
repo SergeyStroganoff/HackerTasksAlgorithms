@@ -14,7 +14,6 @@ public class BracketsChecker {
         String testFour = "[(()))";
         String testFive = "([{}])";
         System.out.println(checkBrackets(testOne) ? "OK" : "FAIL");
-
     }
 
     private static boolean checkBrackets(String inputString) {
