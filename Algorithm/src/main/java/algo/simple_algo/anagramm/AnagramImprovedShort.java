@@ -19,6 +19,6 @@ public class AnagramImprovedShort {
             map.merge(test1.charAt(i), 1, (oldV, newV) -> oldV + newV == 0 ? null : oldV + newV);
             map.merge(test2.charAt(i), -1, (oldV, newV) -> oldV + newV == 0 ? null : oldV + newV);
         }
-        return map.size() == 0;
+        return map.isEmpty();
     }
 }
