@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Solution {
     public static void main(String[] args) {
-        System.out.println(printPyramid(5));
+        System.out.println(piramidVersion3(5));
     }
 
     public static String printPyramid(int n) {
@@ -29,5 +29,26 @@ public class Solution {
             result[i] = " ".repeat(n - i - 1) + "*".repeat(2 * i + 1) + " ".repeat(n - i - 1);
         }
         return result;
+    }
+
+    public static String piramidVersion3(int n) {
+        int maxWidth = n * 2 - 1;
+        int middleIndex = maxWidth / 2;
+        int l = middleIndex;
+        int r = middleIndex;
+        StringBuilder pyramid = new StringBuilder();
+        char[] row = new char[maxWidth];
+        Arrays.fill(row, ' ');
+        for (int i = 0; i < n; i++) {
+            for (int d = l; d <= r; d++) {
+                row[d] = '*';
+                //System.out.println(d);
+            }
+            pyramid.append(row).append("\n");
+            Arrays.fill(row, ' ');
+            l--;
+            r++;
+        }
+        return pyramid.toString();
     }
 }
