@@ -32,7 +32,7 @@ public class NearestSmallerElement {
         int[] result = new int[testArray.length];
         Stack<Integer> integersStack = new Stack<>();
         for (int i = 0; i < testArray.length; i++) {
-            while (!integersStack.isEmpty() && integersStack.peek() >= testArray[i]) {
+            while (!integersStack.isEmpty() && testArray[integersStack.peek()] >= testArray[i]) {
                 integersStack.pop();
             }
             // Если стек не пуст, ближайший меньший элемент — это элемент на вершине стека
@@ -42,7 +42,6 @@ public class NearestSmallerElement {
                 // Если стек пуст, ближайшего меньшего элемента нет
                 result[i] = -1;
             }
-
             // Добавляем текущий индекс в стек
             integersStack.push(i);
         }

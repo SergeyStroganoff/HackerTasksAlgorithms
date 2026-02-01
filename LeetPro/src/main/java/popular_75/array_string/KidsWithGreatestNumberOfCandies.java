@@ -6,9 +6,13 @@ import java.util.List;
 
 public class KidsWithGreatestNumberOfCandies {
 
-    // Given the array candies and the integer extraCandies, where candies[i] represents the number of candies the ith kid has.
-    // For each kid check if there is a way to distribute extraCandies among the kids such that he or she can have the greatest number of candies among them.
-    // Return a boolean array result of length n, where result[i] is true if after the distribution of extraCandies, the ith kid will have the greatest number of candies, or false otherwise.
+    // Given the array candies and the integer extraCandies,
+    // where candies[i] represents the number of candies the ith kid has.
+    // For each kid check if there is a way to distribute extraCandies among the kids
+    // such that he or she can have the greatest number of candies among them.
+    // Return a boolean array result of length n, where result[i] is true
+    // if after the distribution of extraCandies, the ith kid will have the greatest number of candies,
+    // or false otherwise.
 
     public static void main(String[] args) {
         KidsWithGreatestNumberOfCandies solution = new KidsWithGreatestNumberOfCandies();

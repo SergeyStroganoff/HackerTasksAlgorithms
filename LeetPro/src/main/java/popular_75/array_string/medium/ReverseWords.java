@@ -25,7 +25,6 @@ public class ReverseWords {
             if (!stringBuf[i].equals("")) {
                 stringBuilder.append(stringBuf[i]).append(" ");
             }
-
         }
         return stringBuilder.toString().trim();
     }
